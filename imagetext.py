@@ -29,10 +29,8 @@ class TextImagePoint:
     def generate_text(self, text, size, width, height, x_pos, y_pos, font):
         # generate image with PIL
         image = Image.new('RGB', (width, height))
-
         draw = ImageDraw.Draw(image)
-        font = ImageFont.truetype("arial.ttf", size)
-        draw.text((x_pos, y_pos), text, font=font)
+        draw.text((x_pos, y_pos), text, font=ImageFont.truetype(font, size))
 
         # convert to tensor
         out_image = np.array(image.convert("RGB")).astype(np.float32) / 255.0
@@ -66,11 +64,9 @@ class TextImagePixel:
     def generate_text(self, text, size, width, height, x_pos, y_pos, font):
         # generate image with PIL
         image = Image.new('RGB', (width, height))
-        
         size = size * 0.75
         draw = ImageDraw.Draw(image)
-        font = ImageFont.truetype("arial.ttf", size)
-        draw.text((x_pos, y_pos), text, font=font)
+        draw.text((x_pos, y_pos), text, font=ImageFont.truetype(font, size))
 
         # convert to tensor
         out_image = np.array(image.convert("RGB")).astype(np.float32) / 255.0

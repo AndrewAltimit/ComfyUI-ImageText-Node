@@ -1,7 +1,7 @@
 import torch
 import numpy as np
 from PIL import Image, ImageFont, ImageDraw
-import os
+import matplotlib.font_manager
 
 class TextImagePoint:
     def __init__(self):
@@ -17,7 +17,7 @@ class TextImagePoint:
                 "height": ("INT", {"default": 1200, "min": 64, "max": 10000}),
                 "x_pos": ("INT", {"default": 400, "min": 0, "max": 10000}),
                 "y_pos": ("INT", {"default": 400, "min": 0, "max": 10000}),
-                "font": ([font for font in os.listdir(r'C:\Windows\fonts') if font.split(".")[-1] == "ttf"],),
+                "font": ([font.split("\\")[-1] for font in matplotlib.font_manager.findSystemFonts(fontpaths=None, fontext='ttf') if font.split(".")[-1] == "ttf"],),
             }
         }
 
@@ -54,7 +54,7 @@ class TextImagePixel:
                 "height": ("INT", {"default": 1200, "min": 64, "max": 10000}),
                 "x_pos": ("INT", {"default": 400, "min": 0, "max": 10000}),
                 "y_pos": ("INT", {"default": 400, "min": 0, "max": 10000}),
-                "font": ([font for font in os.listdir(r'C:\Windows\fonts') if font.split(".")[-1] == "ttf"],),
+                "font": ([font.split("\\")[-1] for font in matplotlib.font_manager.findSystemFonts(fontpaths=None, fontext='ttf') if font.split(".")[-1] == "ttf"],),
             }
         }
 

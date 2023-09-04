@@ -12,19 +12,19 @@ class TextImage:
         return {
             "required": {
                 "text": ('STRING', { 'multiline': True, 'default': '' }),
-                "size": ("Integer", {"default": 20, "min": 1, "max": 1000}),
-                "width": ("Integer", {"default": 800, "min": 64, "max": 10000}),
-                "height": ("Integer", {"default": 1200, "min": 64, "max": 10000}),
-                "x_pos": ("Integer", {"default": 400, "min": 0, "max": 10000}),
-                "y_pos": ("Integer", {"default": 400, "min": 0, "max": 10000}),
-                "font": (os.listdir(r'C:\Windows\fonts'),),
+                "size": ("INT", {"default": 20, "min": 1, "max": 1000}),
+                "width": ("INT", {"default": 800, "min": 64, "max": 10000}),
+                "height": ("INT", {"default": 1200, "min": 64, "max": 10000}),
+                "x_pos": ("INT", {"default": 400, "min": 0, "max": 10000}),
+                "y_pos": ("INT", {"default": 400, "min": 0, "max": 10000}),
+                "font": ([font for font in os.listdir(r'C:\Windows\fonts') if font.split(".")[-1] == "ttf"],),
             }
         }
 
     RETURN_TYPES = ("IMAGE",)
     FUNCTION = "generate_text"
     OUTPUT_NODE = True
-    CATEGORY = "Image/Text Image"
+    CATEGORY = "image"
 
     def generate_text(self, text, size, width, height, x_pos, y_pos, font):
         # generate image with PIL
@@ -42,5 +42,5 @@ class TextImage:
 
         
 NODE_CLASS_MAPPINGS = {
-    "Text Image": TextImage,
+    "Generate Text Image": TextImage,
 }
